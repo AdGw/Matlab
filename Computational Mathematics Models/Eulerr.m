@@ -30,4 +30,4 @@ end
 plot(time, ueul)
 maxk
 err_eul_at_T = err_eul(maxk+1)
-err_im_eul_at_T = err_im_eul(maxk+1)
+err_im_eul_at_T = err_im_eul(maxk+1);
