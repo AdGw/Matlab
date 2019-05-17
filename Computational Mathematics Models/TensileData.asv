@@ -1,0 +1,38 @@
+classdef TensileData
+    properties
+        Material
+        SampleNumber
+        Stress
+        Strain
+        Modulus
+    end
+    methods
+        function td = TensileData(material,samplenum,stress,strain)
+            if nargin > 0
+                td.Material = material;
+                td.SampleNumber = samplenum;
+                td.Stress = stress;
+                td.Strain = strain;
+            end
+        end
+    end
+    methods
+        function modulus = get.Modulus(obj)
+            ind = find(obj.Strain > 0);
+            modulus = mean(obj.Stress(ind)./obj.Strain(ind));
+        end
+    end
+    methods
+        function obj = set.Modulus(obj,~)
+            fprintf('%s%d\n','Modulus is: ',obj.Modulus)
+            error('You cannot set the Modulus property');
+        end
+    end
+    methods
+        function disp(td)
+            fprintf(1,...
+            'Material: %s\nSample Number: %g\nModulus: %1.5g\n',...
+            td.Material,td.SampleNumber,td.Modulus);
+        end
+    end
+end
